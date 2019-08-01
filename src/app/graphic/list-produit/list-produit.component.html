@@ -1,9 +1,20 @@
-<p>list-produit works!</p>
-<div>
+
+
+<div class=list>
     <ul>
         
-          <Li ng*for ="let a of article"> {{a.name}}</Li>
+          <Li *ngFor ="let a of articles"> 
+              {{a.Id}} |
+              {{a.Nom}}|
+              {{a.Texture}}|
+              {{a.Grammage}}| 
+              {{a.Couleur}} 
+              
+
+          </Li>
         
     </ul>
+
 </div>
+<button type="ajouter" >Ajouter</button>
 <div><span> </span></div>
