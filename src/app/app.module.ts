@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailProduitComponent } from './graphic/detail-produit/detail-produit.component';
 import { ListProduitComponent } from './graphic/list-produit/list-produit.component';
+import { ReactiveFormsModule } from  '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ListProduitComponent } from './graphic/list-produit/list-produit.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

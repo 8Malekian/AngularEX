@@ -1,20 +1,11 @@
-
-
 <div class=list>
-    <ul>
-        
-          <Li *ngFor ="let a of articles"> 
-              {{a.Id}} |
-              {{a.Nom}}|
-              {{a.Texture}}|
-              {{a.Grammage}}| 
-              {{a.Couleur}} 
-              
-
-          </Li>
-        
-    </ul>
-
+  <ul>
+    <li *ngFor="let a of articles">
+      {{a.Id}} |
+      {{a.Nom}}|
+      {{a.Texture}}|
+      {{a.Grammage}}|
+      {{a.Couleur}}
+    </li>
+  </ul>
 </div>
-<button type="ajouter" >Ajouter</button>
-<div><span> </span></div>

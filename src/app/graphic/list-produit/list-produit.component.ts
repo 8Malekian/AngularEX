@@ -9,25 +9,27 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
   styleUrls: ['./list-produit.component.css']
 })
 export class ListProduitComponent implements OnInit {
- 
-
-produitForm =new FormGroup({
-Id:new FormControl(''),
-Nom:new FormControl(''),
-Texture:new FormControl(''),
-Grammage:new FormControl(''),
-Couleur:new FormControl(''),
-});
 
 
-article: Article;
-articles: Article[];
+  public produitForm = new FormGroup({
+    Id: new FormControl(''),
+    Nom: new FormControl(''),
+    Texture: new FormControl(''),
+    Grammage: new FormControl(''),
+    Couleur: new FormControl(''),
+  });
 
-  constructor( private _articleRepo: ArticleRepositoryService) { }
+
+  article: Article;
+  articles: Article[];
+
+  constructor(private _articleRepo: ArticleRepositoryService) { }
 
   ngOnInit() {
-this.articles = this._articleRepo.getArticles();
+    this.articles = this._articleRepo.getArticles();
 
   }
-
+  onSubmit() {
+    this.article.setValue(this.produitForm.value);
+  }
 }

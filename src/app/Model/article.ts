@@ -6,10 +6,10 @@ export class Article {
     public Couleur: string;
 
     public constructor (data?){
-        this.setvalue(data);
+        this.setValue(data);
 
     }
-    setvalue (data?){
+    setValue (data?){
     if (data == null) return;
     if (data.hasOwnProperty('Id')) this.Id = data.Id;
     if (data.hasOwnProperty('Nom')) this.Nom = data.Nom;

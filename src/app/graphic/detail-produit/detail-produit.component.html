@@ -1,15 +1,21 @@
-<p>detail-produit works!</p>
+<h2> Produit sélectionné</h2>
 <div>
-    <span>
-        
-    </span>
+  <span>
+    <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+      <div> <span> Id: </span> <input formControlName="Id" /></div>
+      <div> <span> Nom: </span> <input formControlName="Nom" /></div>
+      <div> <span> Texture: </span> <input formControlName="Texture" /></div>
+      <div> <span> Grammage: </span> <input formControlName="Grammage" /></div>
+      <div> <span> Couleur: </span> <input formControlName="Couleur" /> </div>
+    </form>
+  </span>
 
 </div>
-<div> 
-    <span>
-            <button type="annuler" >Annuler</button>
-</span>
-<span>
-        <button type="valider" >Valider</button>
-</span>
+<div>
+  <span>
+    <button type="button">Annuler</button>
+  </span>
+  <span>
+    <button type="submit" [disabled]="!playerForm.valid">Valider</button>
+  </span>
 </div>
