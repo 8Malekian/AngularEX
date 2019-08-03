@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Article } from 'src/app/Model/article';
 import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
+
 
 @Component({
   selector: 'app-list-produit',
@@ -22,14 +23,23 @@ export class ListProduitComponent implements OnInit {
 
   article: Article;
   articles: Article[];
+  enEdition=false;
+  
 
   constructor(private _articleRepo: ArticleRepositoryService) { }
-
+ 
   ngOnInit() {
     this.articles = this._articleRepo.getArticles();
-
+    this.articleSelectionner(this.articles[0]);
+    
   }
   onSubmit() {
     this.article.setValue(this.produitForm.value);
   }
+  articleSelectionner (a:Article){
+    if (!this.enEdition){
+      this.article=a;
+    }
+  }
+
 }

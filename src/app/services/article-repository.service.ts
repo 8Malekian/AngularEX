@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Article } from '../Model/article';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  
 })
 export class ArticleRepositoryService {
   private articles = [
@@ -22,10 +23,18 @@ export class ArticleRepositoryService {
       Couleur: 'mi-teintes vive',
     })];
 
+private test= new Article({
 
+  Id: 2,
+  Nom: 'papier à dessin couleur',
+  Texture: 'lisse',
+  Grammage: 160,
+  Couleur: 'mi-teintes vive',
+});
   constructor() { }
 
   public getArticles() {
     return this.articles;
   }
+ 
 }
