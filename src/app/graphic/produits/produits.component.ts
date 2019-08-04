@@ -11,6 +11,7 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
 export class ProduitsComponent implements OnInit {
 
   public article: Article;
+  public selectedArticle:Article;
   public produit: Article[];
   public articles:Article[];
   public enEdition: boolean = false;
@@ -32,7 +33,7 @@ export class ProduitsComponent implements OnInit {
   ngOnInit() {
     
     this.produit = this._articleRepo.getArticles();
-    this.articleSelectionner(this.produit[0]);
+    
 
   }
   onSubmit() {
@@ -42,6 +43,7 @@ export class ProduitsComponent implements OnInit {
 
   articleSelectionner(a: Article) {
     this.articleForm.setValue(a);
+    this.selectedArticle=a;
   }
   //selectProduit(p: Article) {
 
