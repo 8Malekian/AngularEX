@@ -7,6 +7,7 @@ import { DetailProduitComponent } from './graphic/detail-produit/detail-produit.
 import { ListProduitComponent } from './graphic/list-produit/list-produit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ControleurComponent } from './graphic/controleur/controleur.component';
+import { ProduitsComponent } from './graphic/produits/produits.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ControleurComponent } from './graphic/controleur/controleur.component';
     ControleurComponent,
     DetailProduitComponent,
     ListProduitComponent,
+    ProduitsComponent,
     
     
   ],

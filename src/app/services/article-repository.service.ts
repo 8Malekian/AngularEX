@@ -6,7 +6,7 @@ import { Article } from '../Model/article';
   
 })
 export class ArticleRepositoryService {
-  private articles = [
+  private produit = [
     new Article({
       Id: 1,
       Nom: 'papier à dessin blanc',
@@ -15,7 +15,6 @@ export class ArticleRepositoryService {
       Couleur: 'blanc',
     }),
     new Article({
-
       Id: 2,
       Nom: 'papier à dessin couleur',
       Texture: 'lisse',
@@ -23,18 +22,10 @@ export class ArticleRepositoryService {
       Couleur: 'mi-teintes vive',
     })];
 
-private test= new Article({
-
-  Id: 2,
-  Nom: 'papier à dessin couleur',
-  Texture: 'lisse',
-  Grammage: 160,
-  Couleur: 'mi-teintes vive',
-});
   constructor() { }
 
   public getArticles() {
-    return this.articles;
+    return this.produit;
   }
  
 }

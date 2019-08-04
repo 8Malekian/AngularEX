@@ -3,7 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Article } from 'src/app/Model/article';
 import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
 
-
 @Component({
   selector: 'app-list-produit',
   templateUrl: './list-produit.component.html',

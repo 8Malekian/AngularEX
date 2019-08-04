@@ -1,5 +1,7 @@
+<button type="button">Ajouter</button>
 <h2> Produit sélectionné</h2>
-<div>
+
+<div class= "detail">
   <span>
     <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
       <div> <span> Id: </span> <input formControlName="Id" /></div>
@@ -16,6 +18,6 @@
     <button type="button">Annuler</button>
   </span>
   <span>
-    <button type="submit" [disabled]="!playerForm.valid">Valider</button>
+    <button type="submit" [disabled]="!produitForm.valid">Valider</button>
   </span>
 </div>

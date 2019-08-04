@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from 'src/app/Model/article';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -13,7 +13,20 @@ export class DetailProduitComponent implements OnInit {
   public _article: Article;
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
+  
 
+  get article(){
+    return this._article;
+  }
+
+
+  @Input() set article(value: Article) {
+    this._article = value;
+    this.articleSelectionner(this._article)
+
+  };
+  @Output()ajouter=new EventEmitter<Article>();
+  
   public produitForm = new FormGroup({
     Id: new FormControl(''),
     Nom: new FormControl(''),
@@ -22,26 +35,18 @@ export class DetailProduitComponent implements OnInit {
     Couleur: new FormControl('')
   });
 
-
-  @Input() set article(value: Article) {
-    this._article = value;
-    this.selectProduit(this._article)
-
-  }
-
   constructor() { }
 
   ngOnInit() {
-    this.selectProduit(this.article);
-    this.setEdition(false);
-
+  
+    
+    
   }
   onSubmit() {
-
     this.article.setValue(this.produitForm.value);
     this.setEdition(false);
   }
-  selectProduit(a: Article) {
+  articleSelectionner(a: Article) {
     this.produitForm.setValue(a);
   }
   //selectProduit(p: Article) {
@@ -56,7 +61,7 @@ export class DetailProduitComponent implements OnInit {
 
   }
   annuler() {
-    this.selectProduit(this.article);
+    this.articleSelectionner(this.article);
     this.setEdition(false);
   }
 }
