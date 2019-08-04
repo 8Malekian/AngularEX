@@ -9,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./detail-produit.component.css']
 })
 export class DetailProduitComponent implements OnInit {
-
+public  newarticle:Article;
   public _article: Article;
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
@@ -38,7 +38,7 @@ export class DetailProduitComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  
+ 
     
     
   }
@@ -47,14 +47,11 @@ export class DetailProduitComponent implements OnInit {
     this.setEdition(false);
   }
   articleSelectionner(a: Article) {
+    this.isAffectingValues = true;
     this.produitForm.setValue(a);
+    this.isAffectingValues = false;
   }
-  //selectProduit(p: Article) {
-
-  //this.isAffectingValues = true;
-  //this.produitForm.setValue(p);
-  //this.isAffectingValues = false;
-  //}
+  
   setEdition(value: boolean) {
     this.enEdition = value;
 
@@ -63,5 +60,8 @@ export class DetailProduitComponent implements OnInit {
   annuler() {
     this.articleSelectionner(this.article);
     this.setEdition(false);
+  }
+  Ajouter(){
+    this.ajouter.emit();
   }
 }

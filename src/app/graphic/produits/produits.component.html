@@ -18,6 +18,9 @@
 </div>
 
 <div>
-  <app-detail-produit [article]="selectedArticle"></app-detail-produit>
+  <app-detail-produit [article]="selectedArticle"
+  (ajouter)=ajouter($event)
+  
+  ></app-detail-produit>
 
 </div>

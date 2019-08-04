@@ -16,6 +16,7 @@ export class ProduitsComponent implements OnInit {
   public articles:Article[];
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
+  public Idcounter:number=3;
 
   public articleForm = new FormGroup({
     Id: new FormControl(''),
@@ -56,6 +57,10 @@ export class ProduitsComponent implements OnInit {
 
 
   }
-
+ajouter (ajouter:Article){
+  this.article.setId(this.Idcounter,ajouter);
+  this.produit.push(this.article);
+  this.Idcounter++;
+}
 
 }

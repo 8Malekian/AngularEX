@@ -17,4 +17,12 @@ export class Article {
     if (data.hasOwnProperty('Grammage')) this.Grammage = data.Grammage;
     if (data.hasOwnProperty('Couleur')) this.Couleur= data.Couleur;
     }
+    getId ()
+    {
+        return (this.Id);
+    }
+    setId(a:number,data){
+        if (data == null) return;
+        if (data.hasOwnProperty('Id')) this.Id = (data.Id+a);
+    }
 }
