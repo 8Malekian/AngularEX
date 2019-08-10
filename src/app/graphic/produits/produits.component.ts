@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Article } from 'src/app/Model/article';
 import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
@@ -13,10 +13,10 @@ export class ProduitsComponent implements OnInit {
   public article: Article;
   public selectedArticle:Article;
   public produit: Article[];
-  public articles:Article[];
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
   public Idcounter:number=3;
+ 
 
   public articleForm = new FormGroup({
     Id: new FormControl(''),
@@ -26,41 +26,40 @@ export class ProduitsComponent implements OnInit {
     Couleur: new FormControl('')
   });
 
-
-
-
   constructor(private _articleRepo: ArticleRepositoryService) { }
 
   ngOnInit() {
     
     this.produit = this._articleRepo.getArticles();
-    
+    this.articleSelectionner(this.produit[0]);
 
   }
   onSubmit() {
-    this.article.setValue(this.articleForm.value)
+  this.article.setValue(this.articleForm.value);
 
   }
 
   articleSelectionner(a: Article) {
-    this.articleForm.setValue(a);
+   //this.articleForm.setValue(a);
     this.selectedArticle=a;
   }
-  //selectProduit(p: Article) {
+  
 
   //this.isAffectingValues = true;
-  //this.produitForm.setValue(p);
+  
   //this.isAffectingValues = false;
-  //}
+ /*
   setEdition(value: boolean) {
     this.enEdition = value;
-
-
-  }
-ajouter (ajouter:Article){
-  this.article.setId(this.Idcounter,ajouter);
+  }*/
+  
+ajouter (data: Article){
+  this.article.setId(this.Idcounter,data);
   this.produit.push(this.article);
   this.Idcounter++;
+ 
 }
-
+update (data){
+  
+}
 }

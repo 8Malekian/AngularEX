@@ -9,13 +9,13 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./detail-produit.component.css']
 })
 export class DetailProduitComponent implements OnInit {
-public  newarticle:Article;
+ 
   public _article: Article;
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
-  
 
-  get article(){
+
+  get article() {
     return this._article;
   }
 
@@ -25,8 +25,9 @@ public  newarticle:Article;
     this.articleSelectionner(this._article)
 
   };
-  @Output()ajouter=new EventEmitter<Article>();
-  
+  @Output() ajouterProduit = new EventEmitter<Article>();
+  @Output() update = new EventEmitter<any>();
+
   public produitForm = new FormGroup({
     Id: new FormControl(''),
     Nom: new FormControl(''),
@@ -38,30 +39,43 @@ public  newarticle:Article;
   constructor() { }
 
   ngOnInit() {
- 
-    
-    
+    //this.articleSelectionner(this.article);
+    this.produitForm.valueChanges.subscribe((d) =>{
+   if (!this.isAffectingValues) {
+      this.enEdition = true;
+      this.update.emit(this.enEdition);
+    }
+    });
   }
+
   onSubmit() {
     this.article.setValue(this.produitForm.value);
     this.setEdition(false);
+    this.update.emit(this.enEdition)
   }
+
   articleSelectionner(a: Article) {
     this.isAffectingValues = true;
     this.produitForm.setValue(a);
     this.isAffectingValues = false;
   }
-  
+
   setEdition(value: boolean) {
     this.enEdition = value;
+    this.update.emit(this.enEdition);
 
 
+  }
+  onUpdate() {
+    this.update.emit(this.produitForm);
   }
   annuler() {
     this.articleSelectionner(this.article);
     this.setEdition(false);
   }
-  Ajouter(){
-    this.ajouter.emit();
+
+  onClicAjouter() {
+    this._article.setValue(this.produitForm.value)
+    this.ajouterProduit.emit(this._article);
   }
 }

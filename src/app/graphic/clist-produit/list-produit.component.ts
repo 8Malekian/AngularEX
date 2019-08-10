@@ -11,7 +11,7 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
 export class ListProduitComponent implements OnInit {
 
 
-  public produitForm = new FormGroup({
+  /*public produitForm = new FormGroup({
     Id: new FormControl(''),
     Nom: new FormControl(''),
     Texture: new FormControl(''),
@@ -22,23 +22,23 @@ export class ListProduitComponent implements OnInit {
 
   article: Article;
   articles: Article[];
-  enEdition=false;
+  enEdition=false;*/
   
 
   constructor(private _articleRepo: ArticleRepositoryService) { }
  
-  ngOnInit() {
-    this.articles = this._articleRepo.getArticles();
-    this.articleSelectionner(this.articles[0]);
+ ngOnInit() {
+   /* this.articles = this._articleRepo.getArticles();
+    //this.articleSelectionner(this.articles[0]);
     
   }
   onSubmit() {
     this.article.setValue(this.produitForm.value);
   }
-  articleSelectionner (a:Article){
+  /*articleSelectionner (a:Article){
     if (!this.enEdition){
       this.article=a;
-    }
+    }*/
   }
 
 }

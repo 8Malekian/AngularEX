@@ -23,6 +23,7 @@ export class Article {
     }
     setId(a:number,data){
         if (data == null) return;
-        if (data.hasOwnProperty('Id')) this.Id = (data.Id+a);
+        if (data.hasOwnProperty('Id')) this.Id = a;
     }
+    
 }
