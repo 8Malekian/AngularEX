@@ -2,27 +2,20 @@
 
 <div class="list">
   <ul>
-   <li *ngFor="let a of produit" (click)="articleSelectionner(a)" [class.selected]="a==selectedArticle"(ajouterProduit)="ajouter(n)" >
+    <li *ngFor="let a of produit" (click)="articleSelectionner(a)" [class.selected]="a==selectedArticle"
+      (ajouterProduit)="ajouter(n)">
       <span>{{a.Id}}|
         {{a.Nom}}|
         {{a.Texture}}|
         {{a.Grammage}}|
         {{a.Couleur}}|</span>
-        
-    
-
     </li>
-
   </ul>
-
 </div>
 
 
 <div>
-  <app-detail-produit [article]="selectedArticle"
-  (ajouter)= "ajouter($event)"(update)="update($event)"
-
-  
-  ></app-detail-produit>
+  <app-detail-produit [article]="selectedArticle" (ajouterProduit)="ajouter($event)" (update)="update($event)"
+    (modifierProduit)="modifier($event)"></app-detail-produit>
 
 </div>

@@ -1,23 +1,20 @@
-<button type="button"[disabled]="!produitForm.valid" >Ajouter</button>
+<button type="button" [disabled]="!produitForm.valid" (click)="onClicAjouter()">Ajouter</button>
 <h2> Produit sélectionné</h2>
 
-<div class= "detail">
-  <span>
-    <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
-      <div> <span> Id: </span> <input formControlName="Id" /></div>
-      <div> <span> Nom: </span> <input formControlName="Nom" /></div>
-      <div> <span> Texture: </span> <input formControlName="Texture" /></div>
-      <div> <span> Grammage: </span> <input formControlName="Grammage" /></div>
-      <div> <span> Couleur: </span> <input formControlName="Couleur" /> </div>
-    </form>
-  </span>
-
-</div>
-<div>
-  <span>
-    <button type="button"(click)="annuler()">Annuler</button>
-  </span>
-  <span>
-    <button type="submit" [disabled]="!produitForm.valid">Valider</button>
-  </span>
-</div>
+<form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+  <div class="detail">
+    <div> <span> Nom: </span> <input formControlName="Nom" /></div>
+    <div> <span> Texture: </span> <input formControlName="Texture" /></div>
+    <div> <span> Grammage: </span> <input formControlName="Grammage" /></div>
+    <div> <span> Couleur: </span> <input formControlName="Couleur" /> </div>
+  </div>
+  <div>
+    <span>
+      <button type="button" (click)="annuler()">Annuler</button>
+    </span>
+    <span>
+      <button type="submit" [disabled]="!produitForm.valid">Valider</button>
+    </span>
+  </div>
+</form>
+<div *ngIf="!produitForm.valid"> Tous les champs du formulaire doivent étre completés</div>

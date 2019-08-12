@@ -14,22 +14,20 @@ export class DetailProduitComponent implements OnInit {
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
 
-
   get article() {
     return this._article;
   }
 
-
   @Input() set article(value: Article) {
     this._article = value;
-    this.articleSelectionner(this._article)
+    this.articleSelectionner(this._article);
+  }
 
-  };
   @Output() ajouterProduit = new EventEmitter<Article>();
   @Output() update = new EventEmitter<boolean>();
+  @Output() modifierProduit = new EventEmitter<Article>();
 
   public produitForm = new FormGroup({
-
     Id: new FormControl(''),
     Nom: new FormControl('', Validators.required),
     Texture: new FormControl('', Validators.required),
@@ -40,23 +38,29 @@ export class DetailProduitComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.articleSelectionner(this.article);
     this.produitForm.valueChanges.subscribe((d) => {
       if (!this.isAffectingValues) {
-        this.enEdition = true;
-        this.update.emit(this.enEdition);
+        this.setEdition(true);
       }
     });
   }
 
   onSubmit() {
-    this.article.setValue(this.produitForm.value);
+    this._article.setValue(this.produitForm.value);
+    this.modifierProduit.emit(this._article);
     this.setEdition(false);
   }
+
   annuler() {
     this.articleSelectionner(this.article);
     this.setEdition(false);
   }
+
+  onClicAjouter() {
+    this.setEdition(false);
+    this.ajouterProduit.emit(this.produitForm.value);
+  }
+
   articleSelectionner(a: Article) {
     this.isAffectingValues = true;
     this.produitForm.setValue(a);
@@ -66,12 +70,5 @@ export class DetailProduitComponent implements OnInit {
   setEdition(value: boolean) {
     this.enEdition = value;
     this.update.emit(this.enEdition);
-
-
-  }
-
-  onClicAjouter() {
-    this._article.setValue(this.produitForm.value)
-    this.ajouterProduit.emit(this._article);
   }
 }

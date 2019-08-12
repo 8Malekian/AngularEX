@@ -11,44 +11,45 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
 export class ProduitsComponent implements OnInit {
 
   public article: Article;
-  public selectedArticle:Article;
+  public selectedArticle: Article;
   public produit: Article[];
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
-  public Idcounter:number=3;
- 
- 
+  public Idcounter: number = 1;
+  public Idmax: number;
+  
 
- 
+
+
+
 
   constructor(private _articleRepo: ArticleRepositoryService) { }
 
   ngOnInit() {
-    
+
     this.produit = this._articleRepo.getArticles();
     this.articleSelectionner(this.produit[0]);
 
   }
-  onSubmit() {
-  
-
-  }
 
   articleSelectionner(a: Article) {
-   if (!this.enEdition){
-    this.selectedArticle=a;
-  }}
-  
+    if (!this.enEdition) {
+      this.selectedArticle = a;
+    }
+  }
 
-  
-  
-ajouter (data: Article){
-  this.article.setId(this.Idcounter,data);
-  this.produit.push(this.article);
-  this.Idcounter++;
- 
-}
-update (data){
-  this.enEdition=data;
-}
+  ajouter(a: Article) {
+    var b: Article;
+    b = this._articleRepo.ajouter(a);
+    this.articleSelectionner(b);
+  }
+
+  update(bEnEdition:boolean) {
+    this.enEdition = bEnEdition;
+  }
+
+  modifier(a:Article){
+   this._articleRepo.modifier(a);
+  }
+
 }

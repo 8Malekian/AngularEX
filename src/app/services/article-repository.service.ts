@@ -3,7 +3,7 @@ import { Article } from '../Model/article';
 
 @Injectable({
   providedIn: 'root',
-  
+
 })
 export class ArticleRepositoryService {
   private produit = [
@@ -27,5 +27,30 @@ export class ArticleRepositoryService {
   public getArticles() {
     return this.produit;
   }
- 
+  public ajouter(a: Article) {
+    var nouveau = new Article;
+    nouveau.setValue(a);
+    nouveau.setId(this.getIdMax() + 1);
+    this.produit.push(nouveau);
+    return nouveau;
+  }
+
+  modifier(a: Article) {
+    var index = this.getIndex(a);
+    this.produit[index] = a;
+  }
+
+  public getIdMax() {
+    var id = -1;
+    this.produit.forEach(b => {
+      if (b.Id > id)
+        id = b.Id;
+    });
+    return id;
+  }
+  public getIndex(a: Article) {
+    return this.produit.findIndex(b => {
+      b.Id === a.Id;
+    });
+  }
 }

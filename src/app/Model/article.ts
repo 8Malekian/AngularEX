@@ -21,9 +21,8 @@ export class Article {
     {
         return (this.Id);
     }
-    setId(a:number,data){
-        if (data == null) return;
-        if (data.hasOwnProperty('Id')) this.Id = a;
+    setId(Id:number){
+        this.Id = Id;
     }
     
 }
