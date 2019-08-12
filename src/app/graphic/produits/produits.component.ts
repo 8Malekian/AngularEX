@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Article } from 'src/app/Model/article';
 import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
 
@@ -17,14 +17,9 @@ export class ProduitsComponent implements OnInit {
   public isAffectingValues: boolean = false;
   public Idcounter:number=3;
  
+ 
 
-  public articleForm = new FormGroup({
-    Id: new FormControl(''),
-    Nom: new FormControl(''),
-    Texture: new FormControl(''),
-    Grammage: new FormControl(''),
-    Couleur: new FormControl('')
-  });
+ 
 
   constructor(private _articleRepo: ArticleRepositoryService) { }
 
@@ -35,23 +30,17 @@ export class ProduitsComponent implements OnInit {
 
   }
   onSubmit() {
-  this.article.setValue(this.articleForm.value);
+  
 
   }
 
   articleSelectionner(a: Article) {
-   //this.articleForm.setValue(a);
+   if (!this.enEdition){
     this.selectedArticle=a;
-  }
+  }}
   
 
-  //this.isAffectingValues = true;
   
-  //this.isAffectingValues = false;
- /*
-  setEdition(value: boolean) {
-    this.enEdition = value;
-  }*/
   
 ajouter (data: Article){
   this.article.setId(this.Idcounter,data);
@@ -60,6 +49,6 @@ ajouter (data: Article){
  
 }
 update (data){
-  
+  this.enEdition=data;
 }
 }

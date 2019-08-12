@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from 'src/app/Model/article';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./detail-produit.component.css']
 })
 export class DetailProduitComponent implements OnInit {
- 
+
   public _article: Article;
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
@@ -26,34 +26,37 @@ export class DetailProduitComponent implements OnInit {
 
   };
   @Output() ajouterProduit = new EventEmitter<Article>();
-  @Output() update = new EventEmitter<any>();
+  @Output() update = new EventEmitter<boolean>();
 
   public produitForm = new FormGroup({
+
     Id: new FormControl(''),
-    Nom: new FormControl(''),
-    Texture: new FormControl(''),
-    Grammage: new FormControl(''),
-    Couleur: new FormControl('')
+    Nom: new FormControl('', Validators.required),
+    Texture: new FormControl('', Validators.required),
+    Grammage: new FormControl('', Validators.required),
+    Couleur: new FormControl('', Validators.required)
   });
 
   constructor() { }
 
   ngOnInit() {
-    //this.articleSelectionner(this.article);
-    this.produitForm.valueChanges.subscribe((d) =>{
-   if (!this.isAffectingValues) {
-      this.enEdition = true;
-      this.update.emit(this.enEdition);
-    }
+    this.articleSelectionner(this.article);
+    this.produitForm.valueChanges.subscribe((d) => {
+      if (!this.isAffectingValues) {
+        this.enEdition = true;
+        this.update.emit(this.enEdition);
+      }
     });
   }
 
   onSubmit() {
     this.article.setValue(this.produitForm.value);
     this.setEdition(false);
-    this.update.emit(this.enEdition)
   }
-
+  annuler() {
+    this.articleSelectionner(this.article);
+    this.setEdition(false);
+  }
   articleSelectionner(a: Article) {
     this.isAffectingValues = true;
     this.produitForm.setValue(a);
@@ -65,13 +68,6 @@ export class DetailProduitComponent implements OnInit {
     this.update.emit(this.enEdition);
 
 
-  }
-  onUpdate() {
-    this.update.emit(this.produitForm);
-  }
-  annuler() {
-    this.articleSelectionner(this.article);
-    this.setEdition(false);
   }
 
   onClicAjouter() {
