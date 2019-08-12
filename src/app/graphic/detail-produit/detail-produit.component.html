@@ -1,14 +1,15 @@
-<button type="button" [disabled]="!produitForm.valid" (click)="onClicAjouter()">Ajouter</button>
+<div class="divBouton"><button type="button" [disabled]="!produitForm.valid" (click)="onClicAjouter()">Ajouter</button></div>
+
 <h2> Produit sélectionné</h2>
 
 <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
   <div class="detail">
-    <div> <span> Nom: </span> <input formControlName="Nom" /></div>
-    <div> <span> Texture: </span> <input formControlName="Texture" /></div>
-    <div> <span> Grammage: </span> <input formControlName="Grammage" /></div>
-    <div> <span> Couleur: </span> <input formControlName="Couleur" /> </div>
+    <div> <span> Nom : </span> <input formControlName="Nom" /></div>
+    <div> <span> Texture : </span> <input formControlName="Texture" /></div>
+    <div> <span> Grammage : </span> <input formControlName="Grammage" /></div>
+    <div> <span> Couleur : </span> <input formControlName="Couleur" /> </div>
   </div>
-  <div>
+  <div class="divBouton">
     <span>
       <button type="button" (click)="annuler()">Annuler</button>
     </span>

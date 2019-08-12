@@ -10,6 +10,7 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
 })
 export class ProduitsComponent implements OnInit {
 
+  title = 'Gestion de produit de Canson et fils';
   public article: Article;
   public selectedArticle: Article;
   public produit: Article[];

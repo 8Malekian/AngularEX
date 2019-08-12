@@ -1,9 +1,53 @@
-.detail{
-    border-width: 2px;
-    border-style: outset;
-    border-color: black;
-    padding: 5px;
-    margin-block-end:10px;
-    margin-block-start: 10px;
-    border-radius:10px ;
+form {
+  font-weight: 600;
+}
+
+.detail {
+  border-width: 2px;
+  border-style: outset;
+  border-color: rgb(129, 126, 126);
+  padding: 5px;
+  margin-block-end: 10px;
+  margin-block-start: 10px;
+  border-radius: 10px;
+}
+
+.detail div {
+
+  margin: 0.5rem;
+}
+
+.detail span {
+  display: inline-block;
+  width: 6.5rem;
+}
+
+button {
+    width: 8rem;
+    height: 2rem;
+  text-decoration: none;
+  padding: 5px;
+  font-family: verdana;
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
+  background-color: #3056bd;
+  border-radius: 27px;
+  margin-right: 0.5rem;
+  
+  
+  border: 3px solid #eb1b48;
+  box-shadow: 5px 6px 10px #444444;
+  
+}
+
+button:hover {
+  padding: 4px;
+  font-family: verdana;
+  border-radius: 24px;
+  border: 3px solid #FFFFFF;
+  box-shadow: 1px 1px 4px #777777;
+  
+}
+.divBouton{
+    height: 2.5rem;
 }
