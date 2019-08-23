@@ -16,6 +16,7 @@ export class DetailProduitComponent implements OnInit {
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
   public articleID: number;
+  public add:boolean=true;
   articlesubscribe;
 
   get article() {
@@ -27,7 +28,7 @@ export class DetailProduitComponent implements OnInit {
     this.articleSelectionner(this._article);
   }
 
-  @Output() ajouterProduit = new EventEmitter<Article>();
+  @Output() ajout = new EventEmitter<boolean>();
   @Output() update = new EventEmitter<boolean>();
   @Output() modifierProduit = new EventEmitter<Article>();
 
@@ -39,21 +40,17 @@ export class DetailProduitComponent implements OnInit {
     Couleur: new FormControl('', Validators.required)
   });
 
-  constructor(private _actRoute: ActivatedRoute, private articleRepo: ArticleRepositoryService) { }
+  constructor(private _actRoute: ActivatedRoute, private _articleRepo: ArticleRepositoryService) { }
 
   ngOnInit() {
 
     this.articleID = +this._actRoute.snapshot.paramMap.get('Id');
 
-    this.articlesubscribe = this.articleRepo.getById(this.articleID).subscribe(
+    this.articlesubscribe = this._articleRepo.getById(this.articleID).subscribe(
       (d) => {
-        this._article = d;        
+        this._article = d;
         this.articleSelectionner(this._article);
       });
-
-
-
-
 
     this.produitForm.valueChanges.subscribe((d) => {
       if (!this.isAffectingValues) {
@@ -75,20 +72,27 @@ export class DetailProduitComponent implements OnInit {
 
   onClicAjouter() {
     this.setEdition(false);
-    this.ajouterProduit.emit(this.produitForm.value);
+    this.ajouter(this.produitForm.value)
+    this.ajout.emit(this.add);
+
   }
 
   articleSelectionner(a: Article) {
-    if (a!=null){
+    if (a != null) {
       this.isAffectingValues = true;
-    this.produitForm.setValue(a);
-    this.isAffectingValues = false;
+      this.produitForm.setValue(a);
+      this.isAffectingValues = false;
     }
-    
+
   }
 
   setEdition(value: boolean) {
     this.enEdition = value;
     this.update.emit(this.enEdition);
+  }
+  ajouter(a: Article) {
+    var b: Article;
+    b = this._articleRepo.ajouter(a);
+
   }
 }

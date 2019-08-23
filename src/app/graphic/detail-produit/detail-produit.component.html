@@ -1,4 +1,4 @@
-<div class="divBouton"><button type="button" [disabled]="!produitForm.valid" (click)="onClicAjouter()">Ajouter</button></div>
+<div class="divBouton"></div>
 
 <h2> Produit sélectionné</h2>
 
@@ -14,7 +14,10 @@
       <button type="button" (click)="annuler()">Annuler</button>
     </span>
     <span>
-      <button type="submit" [disabled]="!produitForm.valid">Valider</button>
+      <button type="submit" [disabled]="!produitForm.valid">Modifier</button>
+    </span>
+    <span>
+        <button type="button" [disabled]="!produitForm.valid" (click)="onClicAjouter()">Ajouter</button>
     </span>
   </div>
 </form>

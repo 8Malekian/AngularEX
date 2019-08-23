@@ -6,6 +6,7 @@ import { DetailProduitComponent } from './graphic/detail-produit/detail-produit.
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProduitsComponent } from './graphic/produits/produits.component';
 import { ProduitComponent } from './graphic/produit/produit.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -15,6 +16,7 @@ import { ProduitComponent } from './graphic/produit/produit.component';
     DetailProduitComponent,
     ProduitsComponent,
     ProduitComponent,
+    NotFoundComponent,
     
     
   ],

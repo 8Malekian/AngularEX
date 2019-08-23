@@ -27,27 +27,6 @@ export class ProduitComponent implements OnInit {
   ngOnInit() {
 
     this.produit$ = this._articleRepo.getArticles();
-
-
   }
 
-  articleSelectionner(a: Article) {
-    if (!this.enEdition) {
-      this.selectedArticle = a;
-    }
-  }
-
-  ajouter(a: Article) {
-    var b: Article;
-    b = this._articleRepo.ajouter(a);
-    this.articleSelectionner(b);
-  }
-
-  update(bEnEdition: boolean) {
-    this.enEdition = bEnEdition;
-  }
-
-  modifier(a: Article) {
-    this._articleRepo.modifier(a);
-  }
 }
