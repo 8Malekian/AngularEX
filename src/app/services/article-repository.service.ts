@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../Model/article';
+import { of } from 'rxjs';
+import {tap,map, shareReplay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +27,7 @@ export class ArticleRepositoryService {
   constructor() { }
 
   public getArticles() {
-    return this.produit;
+    return of (this.produit);
   }
   public ajouter(a: Article) {
     var nouveau = new Article;
@@ -49,8 +51,17 @@ export class ArticleRepositoryService {
     return id;
   }
   public getIndex(a: Article) {
-    return this.produit.findIndex(b => {
-      b.Id === a.Id;
+    return this.produit.findIndex (b =>{
+     return  b.Id === a.Id; 
+          
     });
+    
   }
+  public getById(Id:number){
+    return this.getArticles().pipe(
+      map((a)=>{return a.find(a=>a.Id===Id);
+      }));
+    }
+  
+  
 }

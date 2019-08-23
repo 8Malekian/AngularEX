@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Article } from 'src/app/Model/article';
 import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-produits',
@@ -9,27 +10,23 @@ import { ArticleRepositoryService } from 'src/app/services/article-repository.se
   styleUrls: ['./produits.component.css']
 })
 export class ProduitsComponent implements OnInit {
-
-  title = 'Gestion de produit de Canson et fils';
-  public article: Article;
+  
   public selectedArticle: Article;
   public produit: Article[];
   public enEdition: boolean = false;
-  public isAffectingValues: boolean = false;
-  public Idcounter: number = 1;
-  public Idmax: number;
+  
   
 
-
-
-
-
   constructor(private _articleRepo: ArticleRepositoryService) { }
-
+  
+private articlessubscribe;
   ngOnInit() {
-
-    this.produit = this._articleRepo.getArticles();
-    this.articleSelectionner(this.produit[0]);
+this.articlessubscribe= this._articleRepo.getArticles().subscribe((d)=>{
+  this.produit = d;
+  this.articleSelectionner(this.produit[0]);
+});
+    
+  
 
   }
 

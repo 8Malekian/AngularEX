@@ -1,3 +1,11 @@
 <link href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap" rel="stylesheet">
-<div><app-produits> </app-produits></div>
+<section class="doc1">
+        <h1>
+                {{ title }}
+              </h1>
 
+        <div><a routerLink="/produit">liste des articles</a></div>
+        <div><a routerLink="/detail-produit/:id">gestion des articles</a></div>
+        <router-outlet></router-outlet>    
+
+</section>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from 'src/app/Model/article';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ArticleRepositoryService } from 'src/app/services/article-repository.service';
 
 
 @Component({
@@ -13,6 +15,8 @@ export class DetailProduitComponent implements OnInit {
   public _article: Article;
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
+  public articleID: number;
+  articlesubscribe;
 
   get article() {
     return this._article;
@@ -35,9 +39,21 @@ export class DetailProduitComponent implements OnInit {
     Couleur: new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor(private _actRoute: ActivatedRoute, private articleRepo: ArticleRepositoryService) { }
 
   ngOnInit() {
+
+    this.articleID = +this._actRoute.snapshot.paramMap.get('id');
+
+    this.articlesubscribe = this.articleRepo.getById(this.articleID).subscribe(
+      (d) => {
+        this._article = d;
+        this.articleSelectionner(this._article);
+      });
+
+
+
+
     this.produitForm.valueChanges.subscribe((d) => {
       if (!this.isAffectingValues) {
         this.setEdition(true);

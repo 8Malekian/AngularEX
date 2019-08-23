@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DetailProduitComponent } from './graphic/detail-produit/detail-produit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProduitsComponent } from './graphic/produits/produits.component';
+import { ProduitComponent } from './graphic/produit/produit.component';
 
 
 
@@ -13,6 +14,7 @@ import { ProduitsComponent } from './graphic/produits/produits.component';
     AppComponent,
     DetailProduitComponent,
     ProduitsComponent,
+    ProduitComponent,
     
     
   ],
