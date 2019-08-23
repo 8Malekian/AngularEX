@@ -7,7 +7,7 @@ import { ProduitsComponent } from './graphic/produits/produits.component';
 
 const routes: Routes = [
   { path: 'produit', component: ProduitComponent },
-  { path: 'detail-produit/:id', component: DetailProduitComponent },
+  { path: 'detail-produit/:Id', component: DetailProduitComponent },
   { path :'', component: ProduitsComponent},
   
 ];

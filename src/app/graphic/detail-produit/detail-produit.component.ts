@@ -43,13 +43,14 @@ export class DetailProduitComponent implements OnInit {
 
   ngOnInit() {
 
-    this.articleID = +this._actRoute.snapshot.paramMap.get('id');
+    this.articleID = +this._actRoute.snapshot.paramMap.get('Id');
 
     this.articlesubscribe = this.articleRepo.getById(this.articleID).subscribe(
       (d) => {
-        this._article = d;
+        this._article = d;        
         this.articleSelectionner(this._article);
       });
+
 
 
 
@@ -78,9 +79,12 @@ export class DetailProduitComponent implements OnInit {
   }
 
   articleSelectionner(a: Article) {
-    this.isAffectingValues = true;
+    if (a!=null){
+      this.isAffectingValues = true;
     this.produitForm.setValue(a);
     this.isAffectingValues = false;
+    }
+    
   }
 
   setEdition(value: boolean) {
