@@ -16,7 +16,7 @@ export class DetailProduitComponent implements OnInit {
   public enEdition: boolean = false;
   public isAffectingValues: boolean = false;
   public articleID: number;
-  public add:boolean=true;
+  public add: boolean = true;
   articlesubscribe;
 
   get article() {
@@ -58,7 +58,9 @@ export class DetailProduitComponent implements OnInit {
       }
     });
   }
-
+  ngOnDestroy() {
+    this.articlesubscribe.unsubscribe();
+  }
   onSubmit() {
     this._article.setValue(this.produitForm.value);
     this.modifierProduit.emit(this._article);

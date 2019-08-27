@@ -10,23 +10,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./produits.component.css']
 })
 export class ProduitsComponent implements OnInit {
-  
+
   public selectedArticle: Article;
   public produit: Article[];
   public enEdition: boolean = false;
-  
-  
+
+
 
   constructor(private _articleRepo: ArticleRepositoryService) { }
-  
-private articlessubscribe;
+
+  private articlessubscribe;
   ngOnInit() {
-this.articlessubscribe= this._articleRepo.getArticles().subscribe((d)=>{
-  this.produit = d;
-  this.articleSelectionner(this.produit[0]);
-});
-    
-  
+    this.articlessubscribe = this._articleRepo.getArticles().subscribe((d) => {
+      this.produit = d;
+      this.articleSelectionner(this.produit[0]);
+    });
+
+
 
   }
 
@@ -35,19 +35,21 @@ this.articlessubscribe= this._articleRepo.getArticles().subscribe((d)=>{
       this.selectedArticle = a;
     }
   }
-
+  ngOnDestroy() {
+    this.articlessubscribe.unsubscribe();
+  }
   ajouter(a: Article) {
     var b: Article;
     b = this._articleRepo.ajouter(a);
     this.articleSelectionner(b);
   }
 
-  update(bEnEdition:boolean) {
+  update(bEnEdition: boolean) {
     this.enEdition = bEnEdition;
   }
 
-  modifier(a:Article){
-   this._articleRepo.modifier(a);
+  modifier(a: Article) {
+    this._articleRepo.modifier(a);
   }
 
 }
